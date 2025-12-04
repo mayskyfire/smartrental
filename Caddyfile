@@ -1,0 +1,25 @@
+# Replace with your actual domain
+smartrental.metalabsoft.com {
+    reverse_proxy app:3000
+    
+    # Auto HTTPS with Let's Encrypt
+    tls {
+        email admin@metalabsoft.com
+    }
+    
+    # Security headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        X-XSS-Protection "1; mode=block"
+    }
+    
+    # Enable compression
+    encode gzip
+    
+    # Logging
+    log {
+        output file /var/log/caddy/access.log
+    }
+}

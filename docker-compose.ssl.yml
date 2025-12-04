@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  caddy:
+    image: caddy:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+      - caddy_logs:/var/log/caddy
+    depends_on:
+      - app
+  
+  app:
+    build: .
+    expose:
+      - "3000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN}
+      - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET}
+      - NUXT_APP_BASE_URL=""
+      - LINE_WEBHOOK_URL=https://yourdomain.com/api/line/webhook
+      - SEED_DATABASE=true
+
+volumes:
+  caddy_data:
+  caddy_config:
+  caddy_logs:
