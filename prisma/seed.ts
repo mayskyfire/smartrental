@@ -20,128 +20,115 @@ async function main() {
   // Create properties
   const property1 = await prisma.property.create({
     data: {
-      name: 'เดอะ พาร์ค คอนโดมิเนียม',
-      code: 'PK001',
-      address: '123 ถนนสุขุมวิท แขวงคลองตัน เขตวัฒนา กรุงเทพฯ 10110',
-      description: 'คอนโดมิเนียมหรูใจกลางเมือง ใกล้ BTS อโศก'
+      name: 'D-Condo Campus Hideaway',
+      code: 'C-0001',
+      address: '345 คลองหนึ่ง Khlong Luang District, Pathum Thani 12120'
     }
   })
 
   const property2 = await prisma.property.create({
     data: {
-      name: 'บลู สกาย เรสซิเดนซ์',
-      code: 'BS002',
-      address: '456 ถนนรัชดาภิเษก แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310',
-      description: 'คอนโดสไตล์โมเดิร์น วิวเมืองสวยงาม'
+      name: 'XT Huaikhwang',
+      code: 'C-0002',
+      address: '298 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพมหานคร 10310'
     }
   })
 
   const property3 = await prisma.property.create({
     data: {
-      name: 'กรีน วิลเลจ คอนโด',
-      code: 'GV003',
-      address: '789 ถนนพระราม 4 แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110',
-      description: 'คอนโดในบรรยากาศธรรมชาติ เงียบสงบ'
+      name: 'The Pivacy 101',
+      code: 'C-0003',
+      address: '506 ซอย ปุณณวิถี 16 แขวงบางจาก เขตพระโขนง กรุงเทพมหานคร 10260'
     }
   })
 
-  // Create units for property 1
+  const property4 = await prisma.property.create({
+    data: {
+      name: 'Plum Condo Ram 60 Interchange',
+      code: 'C-0004',
+      address: '26 แขวงหัวหมาก บางกะปิ กรุงเทพมหานคร 10240'
+    }
+  })
+
+  // Create units
   const unit1 = await prisma.unit.create({
     data: {
       propertyId: property1.id,
-      unitCode: 'A1201',
-      floor: 12,
+      unitCode: '80-510',
+      floor: 5,
       areaSqm: 35,
-      baseRentAmount: 15000,
+      baseRentAmount: 11500,
       status: 'OCCUPIED'
     }
   })
 
   const unit2 = await prisma.unit.create({
     data: {
-      propertyId: property1.id,
-      unitCode: 'A1502',
-      floor: 15,
-      areaSqm: 42,
-      baseRentAmount: 18000,
-      status: 'VACANT'
+      propertyId: property2.id,
+      unitCode: '298-1305',
+      floor: 10,
+      areaSqm: 30,
+      baseRentAmount: 17000,
+      status: 'OCCUPIED'
     }
   })
 
-  // Create units for property 2
   const unit3 = await prisma.unit.create({
     data: {
-      propertyId: property2.id,
-      unitCode: 'B0801',
-      floor: 8,
-      areaSqm: 30,
-      baseRentAmount: 12000,
+      propertyId: property3.id,
+      unitCode: '456-159',
+      floor: 7,
+      areaSqm: 26,
+      baseRentAmount: 10500,
       status: 'OCCUPIED'
     }
   })
 
   const unit4 = await prisma.unit.create({
     data: {
-      propertyId: property2.id,
-      unitCode: 'B1003',
-      floor: 10,
-      areaSqm: 38,
-      baseRentAmount: 14500,
-      status: 'VACANT'
-    }
-  })
-
-  // Create units for property 3
-  const unit5 = await prisma.unit.create({
-    data: {
-      propertyId: property3.id,
-      unitCode: 'C0505',
+      propertyId: property4.id,
+      unitCode: '8-950',
       floor: 5,
-      areaSqm: 28,
-      baseRentAmount: 10000,
+      areaSqm: 27,
+      baseRentAmount: 10500,
       status: 'OCCUPIED'
-    }
-  })
-
-  const unit6 = await prisma.unit.create({
-    data: {
-      propertyId: property3.id,
-      unitCode: 'C0702',
-      floor: 7,
-      areaSqm: 32,
-      baseRentAmount: 11500,
-      status: 'VACANT'
     }
   })
 
   // Create tenants
   const tenant1 = await prisma.tenant.create({
     data: {
-      fullName: 'นายสมชาย ใจดี',
-      phone: '081-234-5678',
-      email: 'somchai.jaidee@gmail.com',
-      lineUserId: 'U1234567890abcdef1234567890abcdef',
-      note: 'ผู้เช่าดี ชำระเงินตรงเวลา'
+      fullName: 'ผู้เช่า',
+      phone: '-',
+      email: 'tenant1@example.com',
+      lineUserId: 'U1234567890abcdef1234567890abcdef'
     }
   })
 
   const tenant2 = await prisma.tenant.create({
     data: {
-      fullName: 'นางสาวมาลี สวยงาม',
-      phone: '082-345-6789',
-      email: 'malee.suayngam@hotmail.com',
-      lineUserId: 'U0987654321fedcba0987654321fedcba',
-      note: 'ทำงานบริษัทใหญ่ รายได้มั่นคง'
+      fullName: 'ผู้เช่า',
+      phone: '-',
+      email: 'tenant2@example.com',
+      lineUserId: 'U0987654321fedcba0987654321fedcba'
     }
   })
 
   const tenant3 = await prisma.tenant.create({
     data: {
-      fullName: 'นายวิชัย เก่งมาก',
-      phone: '083-456-7890',
-      email: 'wichai.kengmak@yahoo.com',
-      lineUserId: 'U1122334455aabbcc1122334455aabbcc',
-      note: 'นักศึกษาปริญญาโท มหาวิทยาลัยชื่อดัง'
+      fullName: 'ผู้เช่า',
+      phone: '-',
+      email: 'tenant3@example.com',
+      lineUserId: 'U0987654321fedcba0987654321fedcbc'
+    }
+  })
+
+  const tenant4 = await prisma.tenant.create({
+    data: {
+      fullName: 'ผู้เช่า',
+      phone: '-',
+      email: 'tenant4@example.com',
+      lineUserId: 'U0987654321fedcba0987654321fedcbd'
     }
   })
 
@@ -150,13 +137,13 @@ async function main() {
     data: {
       tenantId: tenant1.id,
       unitId: unit1.id,
-      startDate: new Date('2024-01-01'),
-      monthlyRentAmount: 15000,
-      dueDayOfMonth: 5,
-      depositAmount: 30000,
-      lateFeeStartDay: 3,
-      dailyLateFee: 100,
-      terminationDay: 30,
+      startDate: new Date('2025-12-10'),
+      monthlyRentAmount: 11500,
+      dueDayOfMonth: 10,
+      depositAmount: 23000,
+      lateFeeStartDay: 4,
+      dailyLateFee: 300,
+      terminationDay: 10,
       status: 'ACTIVE'
     }
   })
@@ -164,14 +151,14 @@ async function main() {
   const lease2 = await prisma.lease.create({
     data: {
       tenantId: tenant2.id,
-      unitId: unit3.id,
-      startDate: new Date('2024-03-15'),
-      monthlyRentAmount: 12000,
-      dueDayOfMonth: 15,
-      depositAmount: 24000,
-      lateFeeStartDay: 5,
-      dailyLateFee: 50,
-      terminationDay: 30,
+      unitId: unit2.id,
+      startDate: new Date('2025-12-06'),
+      monthlyRentAmount: 17000,
+      dueDayOfMonth: 6,
+      depositAmount: 34000,
+      lateFeeStartDay: 4,
+      dailyLateFee: 200,
+      terminationDay: 7,
       status: 'ACTIVE'
     }
   })
@@ -179,24 +166,39 @@ async function main() {
   const lease3 = await prisma.lease.create({
     data: {
       tenantId: tenant3.id,
-      unitId: unit5.id,
-      startDate: new Date('2024-06-01'),
-      monthlyRentAmount: 10000,
-      dueDayOfMonth: 1,
-      depositAmount: 20000,
+      unitId: unit3.id,
+      startDate: new Date('2025-12-28'),
+      monthlyRentAmount: 10500,
+      dueDayOfMonth: 28,
+      depositAmount: 31000,
+      lateFeeStartDay: 1,
+      dailyLateFee: 500,
+      terminationDay: 7,
+      status: 'ACTIVE'
+    }
+  })
+
+  const lease4 = await prisma.lease.create({
+    data: {
+      tenantId: tenant4.id,
+      unitId: unit4.id,
+      startDate: new Date('2025-12-05'),
+      monthlyRentAmount: 8000,
+      dueDayOfMonth: 5,
+      depositAmount: 16000,
       lateFeeStartDay: 3,
-      dailyLateFee: 100,
-      terminationDay: 30,
+      dailyLateFee: 500,
+      terminationDay: 7,
       status: 'ACTIVE'
     }
   })
 
   console.log('✅ Seed completed successfully')
   console.log('Admin user:', admin.email, '/ password: admin123')
-  console.log('Properties:', property1.name, property2.name, property3.name)
-  console.log('Units created: 6 units total')
-  console.log('Tenants:', tenant1.fullName, tenant2.fullName, tenant3.fullName)
-  console.log('Active leases: 3 contracts')
+  console.log('Properties:', property1.name, property2.name, property3.name, property4.name)
+  console.log('Units:', unit1.unitCode, unit2.unitCode, unit3.unitCode, unit4.unitCode)
+  console.log('Tenants:', tenant1.fullName, tenant2.fullName, tenant3.fullName, tenant4.fullName)
+  console.log('Leases:', lease1.id, lease2.id, lease3.id, lease4.id)
 }
 
 main()
