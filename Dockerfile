@@ -15,7 +15,7 @@ RUN npm ci
 COPY . .
 
 # Copy .env.example to .env
-RUN cp .env.example .env
+# RUN cp .env.example .env
 
 # Generate Prisma client
 RUN npx prisma generate
