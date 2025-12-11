@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     https: {
       cert: process.env.SSL_CERT_PATH,
       key: process.env.SSL_KEY_PATH
+    },
+    routeRules: {
+      '/.git/**': { redirect: { to: '/', statusCode: 301 } }
     }
   },
   

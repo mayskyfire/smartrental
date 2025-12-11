@@ -175,7 +175,7 @@ model LineMessageLog {
   invoiceId      String?
   invoice        Invoice?            @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
   type           LineMessageType
-  messageContent String
+  messageContent String @db.Text
   sentAt         DateTime            @default(now())
   status         LineMessageStatus
   errorMessage   String?

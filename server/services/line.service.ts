@@ -7,6 +7,10 @@ export async function sendLineMessage(lineUserId: string, text: string): Promise
     return { success: false, error: 'LINE_CHANNEL_ACCESS_TOKEN not configured' }
   }
 
+  if (!lineUserId) {
+    return { success: false, error: 'LINE User ID is empty' }
+  }
+
   try {
     const response = await fetch('https://api.line.me/v2/bot/message/push', {
       method: 'POST',
@@ -20,9 +24,10 @@ export async function sendLineMessage(lineUserId: string, text: string): Promise
       })
     })
 
+    const responseText = await response.text()
+
     if (!response.ok) {
-      const error = await response.text()
-      return { success: false, error: `LINE API error: ${error}` }
+      return { success: false, error: `LINE API error (${response.status}): ${responseText}` }
     }
 
     return { success: true }

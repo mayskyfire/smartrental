@@ -18,7 +18,7 @@ export default defineTask({
     const threeDaysLater = new Date(today)
     threeDaysLater.setDate(threeDaysLater.getDate() + 3)
 
-    console.log('[Task] Checking for invoices to send reminders')
+
 
     // Find invoices that need reminders
     const invoices = await prisma.invoice.findMany({
@@ -76,7 +76,7 @@ export default defineTask({
       else failed++
     }
 
-    console.log(`[Task] Sent ${sent} reminders, ${failed} failed`)
+
     return { result: 'success', sent, failed }
   }
 })
